@@ -9,7 +9,7 @@ Autoři:
 Martin Šilar,
 Kristian Kalmar,
 Dominik Wells,
-Matej Eibner,
+Matej Eibner
 
 Repozitář: https://github.com/leukk/uctenkovac
 
