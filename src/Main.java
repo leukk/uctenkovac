@@ -1,7 +1,12 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+    public static final String PROGRAM_NAME = "Uctenkovac";
+    public static final String VERSION = "1.0.0";
+
     public static void main(String[] args) {
+        System.out.println(PROGRAM_NAME + " v" + VERSION);
+
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.printf("Hello and welcome!");
