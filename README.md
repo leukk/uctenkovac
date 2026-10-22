@@ -5,11 +5,11 @@ Aktuální verze: 1.0.1 (sémantické verzování MAJOR.MINOR.PATCH, viz Jak vyt
 
 Projekt vznikl jako týmové cvičení na VŠE.
 
-Autoři
-Martin Šilar
-Kristian Kalmar
-Dominik Wells
-Matej Eibner
+Autoři:
+Martin Šilar,
+Kristian Kalmar,
+Dominik Wells,
+Matej Eibner,
 
 Repozitář: https://github.com/leukk/uctenkovac
 
