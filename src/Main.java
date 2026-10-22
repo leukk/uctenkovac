@@ -1,20 +1,56 @@
+import java.util.List;
+import java.util.Scanner;
+
+import model.Receipt;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static final String PROGRAM_NAME = "Uctenkovac";
     public static final String VERSION = "1.0.1";
+    public static final Scanner sc = new Scanner(System.in);
+    private static Receipt receipt;
 
     public static void main(String[] args) {
         System.out.println(PROGRAM_NAME + " v" + VERSION);
+        System.out.println("Zadejte prikaz ("
+                + CommandType.LOAD.getName() + ", "
+                + CommandType.SAVE.getName() + ", "
+                + CommandType.PRINT.getName() + ", "
+                + CommandType.EXIT.getName() + "):");
 
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        while (true) {
+            try {
+                System.out.println("> ");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+                List<String> commandArgs = List.of(sc.nextLine().trim().split("\\s+"));
+                if (commandArgs.isEmpty()) {
+                    System.out.println("Zadejte prikaz a jeho argumenty");
+                    continue;
+                }
+
+                CommandType command = CommandType.fromString(commandArgs.get(0));
+                switch (command) {
+                    case LOAD:
+                        receipt = CsvLoader.LoadReceipt(commandArgs.get(1));
+                        System.out.println("Nacteno");
+                        break;
+                    case SAVE:
+                        CsvLoader.SaveReceipt(receipt, commandArgs.get(1));
+                        System.out.println("Ulozeno");
+                        break;
+                    case PRINT:
+                        ReceiptPrinter.PrintReceipt(receipt);
+                        break;
+                    case EXIT:
+                        return;
+                    default:
+                        System.out.println("Neznamy prikaz");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
