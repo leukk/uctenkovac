@@ -26,7 +26,7 @@ public class Main {
                 System.out.print("> ");
 
                 List<String> commandArgs = List.of(sc.nextLine().trim().split("\\s+"));
-                if (commandArgs.isEmpty()) {
+                if (commandArgs.get(0).isEmpty()) {
                     System.out.println("Zadejte prikaz a jeho argumenty");
                     continue;
                 }
@@ -34,18 +34,18 @@ public class Main {
                 CommandType command = CommandType.fromString(commandArgs.get(0));
                 switch (command) {
                     case LOAD:
-                        EnsureArgumentDefined(commandArgs.get(1));
+                        EnsureArgumentDefined(commandArgs, 1);
                         receipt = CsvLoader.LoadReceipt(commandArgs.get(1));
                         System.out.println("Nacteno");
                         break;
                     case SAVE:
-                        EnsureArgumentDefined(commandArgs.get(1));
+                        EnsureReceiptDefined(receipt);
+                        EnsureArgumentDefined(commandArgs, 1);
                         CsvLoader.SaveReceipt(receipt, commandArgs.get(1));
                         System.out.println("Ulozeno");
                         break;
                     case PRINT:
-                        if (receipt == null)
-                            throw new IllegalStateException("Neni nactena uctenka");
+                        EnsureReceiptDefined(receipt);
                         ReceiptPrinter.PrintReceipt(receipt);
                         break;
                     case CREATE:
@@ -64,8 +64,13 @@ public class Main {
         }
     }
 
-    public static void EnsureArgumentDefined(String arg) {
-        if (arg == null || arg.isEmpty())
+    public static void EnsureArgumentDefined(List<String> args, int index) {
+        if (index >= args.size() || args.get(index).isEmpty())
             throw new IllegalArgumentException("Prikaz vyzaduje argument");
+    }
+
+    public static void EnsureReceiptDefined(Receipt receipt) {
+        if (receipt == null)
+            throw new IllegalStateException("Neni nactena uctenka");
     }
 }
