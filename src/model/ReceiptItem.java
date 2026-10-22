@@ -1,3 +1,5 @@
+package model;
+
 public class ReceiptItem {
     public String Name;
     public int Quantity;
