@@ -18,6 +18,7 @@ public class Main {
                 + CommandType.LOAD.getName() + ", "
                 + CommandType.SAVE.getName() + ", "
                 + CommandType.PRINT.getName() + ", "
+                + CommandType.CREATE.getName() + ", "
                 + CommandType.EXIT.getName() + "):");
 
         while (true) {
@@ -33,15 +34,23 @@ public class Main {
                 CommandType command = CommandType.fromString(commandArgs.get(0));
                 switch (command) {
                     case LOAD:
+                        EnsureArgumentDefined(commandArgs.get(1));
                         receipt = CsvLoader.LoadReceipt(commandArgs.get(1));
                         System.out.println("Nacteno");
                         break;
                     case SAVE:
+                        EnsureArgumentDefined(commandArgs.get(1));
                         CsvLoader.SaveReceipt(receipt, commandArgs.get(1));
                         System.out.println("Ulozeno");
                         break;
                     case PRINT:
+                        if (receipt == null)
+                            throw new IllegalStateException("Neni nactena uctenka");
                         ReceiptPrinter.PrintReceipt(receipt);
+                        break;
+                    case CREATE:
+                        receipt = ReceiptCreator.CreateReceipt(sc);
+                        System.out.println("Vytvoreno");
                         break;
                     case EXIT:
                         return;
@@ -53,5 +62,10 @@ public class Main {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static void EnsureArgumentDefined(String arg) {
+        if (arg == null || arg.isEmpty())
+            throw new IllegalArgumentException("Prikaz vyzaduje argument");
     }
 }

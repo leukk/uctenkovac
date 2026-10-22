@@ -4,6 +4,7 @@ public enum CommandType {
     LOAD("load"),
     SAVE("save"),
     PRINT("print"),
+    CREATE("create"),
     EXIT("exit");
 
     private final String name;
@@ -16,7 +17,6 @@ public enum CommandType {
         return name;
     }
 
-    // string -> enum; throws on unknown input, matching CsvLoader's style
     public static CommandType fromString(String s) {
         for (CommandType c : values())
             if (c.name.equalsIgnoreCase(s.trim()))

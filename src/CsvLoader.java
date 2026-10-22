@@ -7,10 +7,6 @@ import java.util.List;
 import model.Receipt;
 import model.ReceiptItem;
 
-/**
- * Format: first line is "id;companyName;companyAddress;currency",
- * every following line is "name;quantity;price".
- */
 public class CsvLoader {
     private static final String SEP = ";";
 
