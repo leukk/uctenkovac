@@ -21,7 +21,7 @@ public class Main {
 
         while (true) {
             try {
-                System.out.println("> ");
+                System.out.print("> ");
 
                 List<String> commandArgs = List.of(sc.nextLine().trim().split("\\s+"));
                 if (commandArgs.isEmpty()) {
