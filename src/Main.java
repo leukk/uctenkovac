@@ -1,6 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
+import model.CommandType;
 import model.Receipt;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or

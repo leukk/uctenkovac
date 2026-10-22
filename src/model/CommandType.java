@@ -1,3 +1,5 @@
+package model;
+
 public enum CommandType {
     LOAD("load"),
     SAVE("save"),
